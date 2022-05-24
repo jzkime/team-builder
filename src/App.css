@@ -1,0 +1,23 @@
+.App {
+  text-align: center;
+}
+
+.form-container {
+  width: 50%;
+  margin: 0 auto;
+  background-color: 	#94d6d7;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+}
+
+form input {
+  width: 50%;
+  margin-bottom: 5%;
+}

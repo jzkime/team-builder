@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function MemberForm(props) {
-    const { values, whileChange, whenSubmit } = props;
+    const { values, whileChange, whenSubmit, memberToEdit, cancelEdit, whenEdit } = props;
     const { firstName, lastName, nickname, email, linkedIn, role } = values;
 
     const handleChange = (evt) => {
@@ -15,10 +15,16 @@ export default function MemberForm(props) {
         whenSubmit()
     }
 
+    const handleUpdate = (evt) => {
+        evt.preventDefault();
+        whenEdit()
+    }
+
     return(
         <div className='form-container'>
+            <h2>Create Member!</h2>
 
-            <form onSubmit={handleSumbit}>
+            <form onSubmit={memberToEdit ? handleUpdate : handleSumbit}>
                 <div className='left-form'>
                     <label htmlFor='firstName'>First Name</label>
                     <input type='text' name='firstName' value={firstName} placeholder='Seungmin' onChange={handleChange} maxLength='15' />
@@ -47,8 +53,12 @@ export default function MemberForm(props) {
                 </div>
 
                 <div className='submit-button'>
-                    <button type='submit' value='submit' >Add member!</button>
-                </div>
+                    <button type='submit' value='submit' >{ memberToEdit ? "Submit Changes" : "Add member!" }</button>
+                </div> 
+
+                {memberToEdit && <div>
+                        <button type='reset' className='cancel-button' onClick={cancelEdit}>cancel</button>
+                    </div>}
 
             </form>
         </div>
